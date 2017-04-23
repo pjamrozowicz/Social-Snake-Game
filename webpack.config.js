@@ -1,7 +1,9 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/main/js/app.js',
+    entry: [
+        'babel-polyfill',
+        './src/main/js/app.js'],
     devtool: 'sourcemaps',
     cache: true,
     debug: true,
@@ -14,10 +16,11 @@ module.exports = {
             {
                 test: path.join(__dirname, '.'),
                 exclude: /(node_modules)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react']
+                    plugins: ['transform-runtime'],
+                    presets: ['es2015', 'stage-0', 'react']
                 }
             }
         ]
