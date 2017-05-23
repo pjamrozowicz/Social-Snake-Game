@@ -4,6 +4,8 @@ package tai.project;
  * Created by Lukas on 22.05.2017.
  */
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.*;
 import org.springframework.social.facebook.api.User;
@@ -12,9 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class HelloController {
+
+    @Autowired
+    private UserRepository repository;
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
@@ -24,6 +31,8 @@ public class HelloController {
         this.connectionRepository = connectionRepository;
     }
 
+
+
     @GetMapping
     public String helloFacebook(Model model) {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
@@ -31,13 +40,21 @@ public class HelloController {
         }
 
         User user = facebook.userOperations().getUserProfile();
+        putUserToDatabase(user);
         model.addAttribute("facebookProfile", user);
-        System.out.println("Id: " + user.getId()
-                + " first name: " + user.getFirstName()
-                + " last name " + user.getLastName()
-                + " gender " + user.getGender());
+        List<tai.project.User> topList = repository.findTop10ByOrderByBestScoreDesc();
+        model.addAttribute("topList",topList);
+
+
+        System.out.println("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        System.out.println(topList);
+
+        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        System.out.println(repository.findAll());
         return "hello";
     }
+
+
 
     @GetMapping(value = {"/index"})
     public String gameView() {
@@ -49,6 +66,14 @@ public class HelloController {
         User user = facebook.userOperations().getUserProfile();
         System.out.println(user.getFirstName());
         return "hello";
+    }
+
+    private void putUserToDatabase(User user){
+        Long id = Long.parseLong(user.getId());
+         if(repository.findByFacebookId(id).isEmpty()){
+            repository.save(new tai.project.User(id, user.getFirstName(),
+                    user.getLastName(), user.getGender()));
+        }
     }
 
 }

@@ -23,7 +23,7 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         this.repository.save(new User(123456L, "Przemek", "Ziomek", "male"));
-        List<User> userList = repository.findByLastName("Ziomek");
-        userList.forEach(System.out::println);
+        this.repository.save(new User(1256L, "Lukasz", "Ziomek", "male"));
+
     }
 }

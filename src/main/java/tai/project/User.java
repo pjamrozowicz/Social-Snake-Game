@@ -15,6 +15,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
+    private int bestScore = 0;
 
     protected User(){}
 
@@ -27,7 +28,7 @@ public class User {
 
     @Override
     public String toString(){
-        return String.format("Id: %d Name: %s %s Gender: %s", facebookId, firstName, lastName, gender);
+        return String.format("Id: %d Name: %s %s Best score: %d", facebookId, firstName, lastName, bestScore);
     }
 
     public Long getFacebookId() {
@@ -60,5 +61,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getBestScore() {
+        return bestScore;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
     }
 }
