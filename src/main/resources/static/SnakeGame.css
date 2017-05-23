@@ -5,8 +5,19 @@
 }
 
 .SnakeGame-log {
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica Neue', serif;
   width: 337px;
   height: 1.5em;
   margin-top: 0.5em;
+  font-size: 20px;
+}
+
+.title {
+  font-family: 'Helvetica Neue', serif;
+}
+
+.main-game {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import classNames from "classnames";
 import _ from "underscore";
 import Bacon from "baconjs";
+import axios from "axios";
 
 class Vector {
     constructor(x, y) {
@@ -41,8 +42,8 @@ class App extends Component {
 
 	render() {
 		return (
-		    <div>
-                <h1>BOARD:</h1>
+		    <div className="main-game">
+                <h1 className="title">Snake</h1>
                 <SnakeGame boardSize={new Vector(20, 20)} />
             </div>
 		)
@@ -100,7 +101,17 @@ class SnakeGame extends Component {
 
         const gameOverEvents = snakeHeadPositions.filter(head =>
             this.state.snakePositions.find(x => x.equals(head)));
-        gameOverEvents.onValue(() => this.setState({ snakePositions: [], score: 0 }));
+        gameOverEvents.onValue(() => {
+            axios({
+                method: 'post',
+                url: '/score/' + this.state.score,
+            }).then((response) => {
+                onSuccess(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+            this.setState({snakePositions: [], score: 0});
+        });
     }
 
     render() {
