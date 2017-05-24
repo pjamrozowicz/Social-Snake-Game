@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Przemek on 2017-04-22.
  */
 
-public interface UserRepository extends JpaRepository<User,Long>, UserRepositoryCustom{
+public interface UserRepository extends JpaRepository<User,Long>{
     List<User> findByLastName(String lastName);
     List<User> findByFirstName(String firstName);
     List<User> findByFacebookId(Long facebookId);

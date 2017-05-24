@@ -48,9 +48,6 @@ public class HelloController {
 
         System.out.println("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
         System.out.println(topList);
-
-        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-        System.out.println(repository.findAll());
         return "hello";
     }
 
@@ -58,22 +55,23 @@ public class HelloController {
 
     @GetMapping(value = {"/index"})
     public String gameView() {
+        if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
+            return "redirect:/connect/facebook";
+        }
         return "index";
-    }
-
-    @GetMapping(value = {"/hellomo"})
-    public String getHello(Model model) {
-        User user = facebook.userOperations().getUserProfile();
-        System.out.println(user.getFirstName());
-        return "hello";
     }
 
     private void putUserToDatabase(User user){
         Long id = Long.parseLong(user.getId());
          if(repository.findByFacebookId(id).isEmpty()){
-            repository.save(new tai.project.User(id, user.getFirstName(),
-                    user.getLastName(), user.getGender()));
+
+            repository.save(new tai.project.User(id,
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getGender()));
         }
     }
+
+
 
 }

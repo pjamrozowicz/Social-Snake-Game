@@ -22,6 +22,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        System.out.println("All users in DB:");
         System.out.println(this.repository.findAll());
     }
 }
