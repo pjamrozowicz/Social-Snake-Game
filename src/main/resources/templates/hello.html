@@ -4,7 +4,7 @@
     <title>Hello Facebook</title>
     <link rel="stylesheet" href="/styles.css" />
 </head>
-<body style="height:100%;background-color: #769906">
+<body style="height:100%;background-color: #757c5b">
 <div class="container">
     <div class="welcome">
         <h3>Hello, <span th:text="${facebookProfile.name}">Some User</span>!</h3>
@@ -28,16 +28,19 @@
         </div>
     </div>
 
-    <h2>Current top 10 list</h2>
-    <!--
+    <h2>Current top list</h2>
     <table>
-        <c:forEach items="${topList}" var="item">
-            <tr>
-                <td><c:out value="${item}" /></td>
-            </tr>
-        </c:forEach>
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Score</td>
+        </tr>
+        <tr th:each="message : ${topList}">
+            <td th:text="${message.firstName}">Name</td>
+            <td th:text="${message.lastName}">Last Name</td>
+            <td th:text="${message.bestScore}">Score</td>
+        </tr>
     </table>
-    -->
 </div>
 
 </body>

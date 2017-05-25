@@ -1,16 +1,30 @@
 <html>
 <head>
     <title>Hello Facebook</title>
+    <link rel="stylesheet" href="/styles.css" />
 </head>
-<body>
-<h3>Connect to Facebook</h3>
+<body style="background-color: #757c5b;">
+
 
 <form action="/connect/facebook" method="POST">
     <input type="hidden" name="scope" value="user_posts" />
-    <div class="formInfo">
-        <p>You aren't connected to Facebook yet. Please log in to play.</p>
+    <div class="container" style="
+     margin:0 auto;
+     margin-top: 10%;
+     height: 300px;
+     width: 500px;
+     background-color: #769906;">
+
+
+        <h3>Connect to Facebook</h3>
+        <p>You aren't connected to Facebook yet.</p>
+        <p>Please log in to play.</p>
+    <p>
+        <button type="submit" style="border: 0; background: transparent">
+            <img src="/img/login.png" width="200" height="75" alt="submit" />
+        </button>
+    </p>
     </div>
-    <p><button type="submit">Connect to Facebook</button></p>
 </form>
 </body>
 </html>
