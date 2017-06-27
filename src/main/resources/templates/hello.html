@@ -4,17 +4,21 @@
     <title>Hello Facebook</title>
     <link rel="stylesheet" href="/styles.css" />
 </head>
-<body style="height:100%;background-color: #757c5b">
+<body style="height:100%;background-color: #757c5b;font-family: Helvetica, Arial, sans-serif;">
 <div class="container">
     <div class="welcome">
-        <h3>Hello, <span th:text="${facebookProfile.name}">Some User</span>!</h3>
+        <h2>Hello, <span th:text="${facebookProfile.name}">Some User</span>!</h2>
     </div>
-
+    <p class="games-title">Games</p>
     <div class="games">
-        <p class="games-title">Games:</p>
         <div class="game">
-            <a href="/index">
+            <a href="/snake">
                 <img src="https://cdn2.iconfinder.com/data/icons/crystalproject/128x128/apps/ksnake.png" />
+            </a>
+        </div>
+        <div class="game">
+            <a href="/racing">
+                <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/car-128.png" />
             </a>
         </div>
         <div class="game">
@@ -23,22 +27,33 @@
         <div class="game">
             <img src="https://cdn0.iconfinder.com/data/icons/This_is_ART_2/128/Coding.png" />
         </div>
-        <div class="game">
-            <img src="https://cdn0.iconfinder.com/data/icons/This_is_ART_2/128/Coding.png" />
-        </div>
     </div>
 
-    <h2>Current top list</h2>
+    <h3>Current top Snake list</h3>
     <table>
-        <tr>
+        <tr style="font-weight: bold">
             <td>Name</td>
             <td>Surname</td>
             <td>Score</td>
         </tr>
-        <tr th:each="message : ${topList}">
+        <tr th:each="message : ${topListSnake}">
             <td th:text="${message.firstName}">Name</td>
             <td th:text="${message.lastName}">Last Name</td>
             <td th:text="${message.bestScore}">Score</td>
+        </tr>
+    </table>
+
+    <h3>Current top Racing list</h3>
+    <table>
+        <tr style="font-weight: bold">
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Time [s]</td>
+        </tr>
+        <tr th:each="message : ${topRacingList}">
+            <td th:text="${message.firstName}">Name</td>
+            <td th:text="${message.lastName}">Last Name</td>
+            <td th:text="${message.bestTime}">Time</td>
         </tr>
     </table>
 </div>

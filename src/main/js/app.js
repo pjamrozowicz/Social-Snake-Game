@@ -43,7 +43,6 @@ class App extends Component {
 	render() {
 		return (
 		    <div className="main-game">
-                <h1 className="title">Snake</h1>
                 <SnakeGame boardSize={new Vector(20, 20)} />
             </div>
 		)
@@ -117,7 +116,8 @@ class SnakeGame extends Component {
     render() {
         return (
             <div className="SnakeGame">
-                <div className="SnakeGame-log">Score: {this.state.score}</div>
+                <div className="SnakeGame-log">Score: {this.state.score}
+                </div>
                 <Board
                     size={this.props.boardSize}
                     snakePositions={this.state.snakePositions}

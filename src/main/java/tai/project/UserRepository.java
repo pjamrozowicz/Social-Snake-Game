@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User,Long>{
     //used to top score
     List<User> findTop10ByOrderByBestScoreDesc();
 
+    List<User> findTop10ByOrderByBestTimeDesc();
+
     //get all users
     List<User>  findAll();
 }

@@ -8336,11 +8336,6 @@
 	            return _react2.default.createElement(
 	                "div",
 	                { className: "main-game" },
-	                _react2.default.createElement(
-	                    "h1",
-	                    { className: "title" },
-	                    "Snake"
-	                ),
 	                _react2.default.createElement(SnakeGame, { boardSize: new Vector(20, 20) })
 	            );
 	        }

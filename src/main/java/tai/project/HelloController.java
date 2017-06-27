@@ -42,23 +42,33 @@ public class HelloController {
         User user = facebook.userOperations().getUserProfile();
         putUserToDatabase(user);
         model.addAttribute("facebookProfile", user);
-        List<tai.project.User> topList = repository.findTop10ByOrderByBestScoreDesc();
-        model.addAttribute("topList",topList);
+
+        List<tai.project.User> topListSnake = repository.findTop10ByOrderByBestScoreDesc();
+        model.addAttribute("topListSnake",topListSnake);
+
+        List<tai.project.User> topListRacing = repository.findTop10ByOrderByBestTimeDesc();
+        model.addAttribute("topRacingList", topListRacing);
 
 
-        System.out.println("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-        System.out.println(topList);
         return "hello";
     }
 
 
 
-    @GetMapping(value = {"/index"})
+    @GetMapping(value = {"/snake"})
     public String gameView() {
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             return "redirect:/connect/facebook";
         }
-        return "index";
+        return "snake";
+    }
+
+    @GetMapping(value = {"/racing"})
+    public String racingView() {
+        if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
+            return "redirect:/connect/facebook";
+        }
+        return "racing";
     }
 
     private void putUserToDatabase(User user){

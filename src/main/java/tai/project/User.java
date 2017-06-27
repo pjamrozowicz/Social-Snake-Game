@@ -17,6 +17,7 @@ public class User {
     private String lastName;
     private String gender;
     private int bestScore = 0;
+    private int bestTime = 888888888;
 
     protected User(){}
 
@@ -29,7 +30,8 @@ public class User {
 
     @Override
     public String toString(){
-        return String.format("Id: %d Name: %s %s Best score: %d", facebookId, firstName, lastName, bestScore);
+        return String.format("Id: %d Name: %s %s Best snake score: %d. Best racing tmpTime %d",
+                facebookId, firstName, lastName, bestScore, bestTime);
     }
 
     public Long getFacebookId() {
@@ -71,4 +73,10 @@ public class User {
     public void setBestScore(int bestScore) {
         this.bestScore = bestScore;
     }
+
+    public int getBestTime(){return bestTime;}
+
+    public void setBestTime(int bestTime) { this.bestTime = bestTime;}
+
+
 }

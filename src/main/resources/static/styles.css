@@ -5,9 +5,6 @@
     align-items: center;
 }
 
-.welcome {
-
-}
 
 .games {
     display: flex;
@@ -29,4 +26,22 @@
 .game img {
     width: 100%;
     height: 100%;
+}
+
+table {
+
+    color: #333;
+    width: 640px;
+    border-collapse:
+            collapse; border-spacing: 0;
+}
+
+td, th {
+    border: 2px solid gray; /* No more visible border */
+    height: 30px;
+}
+
+
+td {
+    text-align: center;
 }
