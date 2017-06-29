@@ -30,7 +30,7 @@ public class User {
 
     @Override
     public String toString(){
-        return String.format("Id: %d Name: %s %s Best snake score: %d. Best racing tmpTime %d",
+        return String.format("Id: %d Name: %s %s Best snake score: %d. Best racing time %d",
                 facebookId, firstName, lastName, bestScore, bestTime);
     }
 
